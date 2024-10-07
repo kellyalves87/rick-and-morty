@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const fetchCharacters = async (page: number, filters: any) => {
-  const { name, status, location, episode } = filters;
+  const { name, status } = filters;
 
   let url = `https://rickandmortyapi.com/api/character/?page=${page}`;
 
