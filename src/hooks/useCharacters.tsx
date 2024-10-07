@@ -8,8 +8,6 @@ const fetchCharacters = async (page: number, filters: any) => {
 
   if (name) url += `&name=${name}`;
   if (status) url += `&status=${status}`;
-  if (location) url += `$status=${location}`;
-  if (episode) url += `$status=${episode}`;
   // Adicione mais lógicas para location e episode se necessário.
 
   const { data } = await axios.get(url);
