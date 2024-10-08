@@ -1,55 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCharacters } from "../hooks/useCharacters";
-import Filters from "./Filters";
 import {
   Box,
   Card,
   CardContent,
   CardMedia,
   Typography,
-  Button,
   Grid,
+  Skeleton,
 } from "@mui/material";
+// src/App.js
 
 const CharacterCards = () => {
-  const [page, setPage] = useState(1);
-  const [filters, setFilters] = useState({
-    name: "",
-    status: "",
-    location: "",
-    episode: "",
-  });
+  // Busca os personagens
+  const { data, isLoading, isError, error } = useCharacters();
 
-  // Usa React Query para buscar os personagens com base nos filtros
-  const { data, isLoading, isError, error } = useCharacters(page, filters);
-
-  // Atualiza os filtros dinamicamente
-  const handleFilterChange = (newFilters: any) => {
-    setFilters(newFilters);
-    setPage(1); // Reiniciar a paginação ao mudar os filtros
-  };
-
+  // Exibe uma mensagem de carregamento enquanto os dados são buscados
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box padding={2}>
+        <Grid container spacing={2} paddingTop={2}>
+          {/* Renderizando 8 Skeletons como placeholders */}
+          {Array.from(new Array(8)).map((_, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <Card>
+                {/* Skeleton para a imagem */}
+                <Skeleton variant="rectangular" width="100%" height={200} />
+                <CardContent>
+                  {/* Skeletons para os textos */}
+                  <Skeleton variant="text" height={30} width="80%" />
+                  <Skeleton variant="text" height={20} width="60%" />
+                  <Skeleton variant="text" height={20} width="50%" />
+                  <Skeleton variant="text" height={20} width="70%" />
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Box>
+    );
   }
 
+  // Exibe uma mensagem de erro caso a requisição falhe
   if (isError) {
     return <div>Error: {error.message}</div>;
   }
 
-  // Adiciona uma verificação de segurança para evitar erro de undefined
-  const hasNextPage = data?.results?.length === 20 && !!data?.info?.next;
-  const hasPrevPage = page > 1;
-
   return (
     <Box padding={2}>
-      {/* Filtros */}
-      <Filters onFilterChange={handleFilterChange} />
-
       {/* Exibe os cards */}
       <Grid container spacing={2} paddingTop={2}>
-        {data?.results?.length > 0 ? (
-          data.results.map((character: any) => (
+        {data?.length > 0 ? (
+          data.map((character: Character) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={character.id}>
               <Card>
                 <CardMedia
@@ -81,29 +83,19 @@ const CharacterCards = () => {
           </Typography>
         )}
       </Grid>
-
-      {/* Botões de Paginação */}
-      <Box display="flex" justifyContent="center" marginTop={2}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-          disabled={!hasPrevPage} /* Desativa se não houver página anterior */
-        >
-          Previous
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setPage((prev) => prev + 1)}
-          disabled={!hasNextPage} /* Desativa se não houver próxima página */
-          sx={{ marginLeft: 2 }}
-        >
-          Next
-        </Button>
-      </Box>
     </Box>
   );
 };
+
+interface Character {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  location?: {
+    name: string;
+  };
+  image: string;
+}
 
 export default CharacterCards;

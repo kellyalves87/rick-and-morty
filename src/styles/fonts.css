@@ -1,0 +1,15 @@
+/* src/styles/fonts.css */
+@font-face {
+    font-family: 'RickAndMortyFont1';
+    src: url('../assets/fonts/get_schwifty.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'RickAndMortyFont2';
+    src: url('../assets/fonts/get_schwifty\ 2.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
