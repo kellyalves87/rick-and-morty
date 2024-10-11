@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Arial', sans-serif;
+    fontFamily: "RickAndMortyFont1, sans-serif"
     background-color: #f0f0f0;
   }
 `;
