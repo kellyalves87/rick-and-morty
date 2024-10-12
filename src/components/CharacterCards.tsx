@@ -170,6 +170,7 @@ const CharacterCards = () => {
                   "&:hover": {
                     transform: "scale(1.05)",
                     boxShadow: 6,
+                    color: "#08C952",
                   },
                 }}
               >
