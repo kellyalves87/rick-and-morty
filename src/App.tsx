@@ -1,10 +1,12 @@
 import React from "react";
 import CharacterCards from "./components/CharacterCards";
 import "./styles/fonts.css";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styles/theme";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <h1
         style={{
           fontFamily: "RickAndMortyFont1, sans-serif",
@@ -17,7 +19,7 @@ const App: React.FC = () => {
         Rick and Morty
       </h1>
       <CharacterCards />
-    </div>
+    </ThemeProvider>
   );
 };
 
