@@ -1,6 +1,61 @@
-# Getting Started with Create React App
+# Rick and Morty Character Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Uma aplicação React moderna para explorar personagens do Rick and Morty, construída com TypeScript e Material-UI.
+
+## 🚀 Tecnologias
+
+- React 18 com TypeScript
+- Styled Components para estilização
+- Material-UI para componentes
+- React Query para gerenciamento de estado e cache
+- Estrutura de Design System personalizada
+
+## 📦 Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/kellyalves87/data-lovers-rick-and-morty.git
+
+# Entre na pasta
+cd data-lovers-rick-and-morty
+
+# Instale as dependências
+npm install
+
+# Inicie o projeto
+npm start
+```
+
+## 🎨 Design System
+
+O projeto utiliza um Design System consistente com:
+
+- 🎯 Tokens de design reutilizáveis
+- 🌈 Paleta de cores semântica
+- 📝 Sistema de tipografia escalável
+- 📏 Espaçamento e métricas consistentes
+- 🔄 Animações e transições padronizadas
+
+## 🏗 Estrutura do Projeto
+
+```
+src/
+  ├── components/     # Componentes React
+  │   └── characters/ # Componentes específicos de personagens
+  ├── hooks/         # Hooks personalizados
+  ├── styles/        # Sistema de design e estilos
+  │   └── theme/     # Configurações do tema
+  ├── types/         # Definições de tipos TypeScript
+  └── assets/        # Recursos estáticos
+```
+
+## 🌟 Funcionalidades
+
+- 🔍 Busca de personagens
+- 🏷 Filtros por status, espécie e gênero
+- 📱 Design responsivo
+- 🔄 Cache inteligente de dados
+- ⚡️ Otimização de performance
 
 ## Available Scripts
 

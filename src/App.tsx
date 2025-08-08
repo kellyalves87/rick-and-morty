@@ -1,24 +1,40 @@
 import React from "react";
-import CharacterCards from "./components/CharacterCards";
-import "./styles/fonts.css";
+import { CharacterList } from "./components/characters";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
+import { GlobalStyle } from "./styles/GlobalStyle";
+import { Typography, Box } from "@mui/material";
+import { LoadingProvider } from "./contexts/LoadingContext";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <h1
-        style={{
-          fontFamily: "RickAndMortyFont1, sans-serif",
-          fontWeight: "bold",
-          fontSize: "5rem",
-          color: "#08C952",
-          textAlign: "center",
-        }}
-      >
-        Rick and Morty
-      </h1>
-      <CharacterCards />
+      <LoadingProvider>
+        <GlobalStyle />
+        <Box
+          component="header"
+          sx={{
+            padding: theme.spacing.xl,
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            component="h1"
+            sx={{
+              fontFamily: theme.typography.fontFamily.primary,
+              fontWeight: theme.typography.fontWeight.bold,
+              fontSize: "5rem",
+              color: theme.colors.primary.main,
+              textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
+            }}
+          >
+            Rick and Morty
+          </Typography>
+        </Box>
+        <Box component="main">
+          <CharacterList />
+        </Box>
+      </LoadingProvider>
     </ThemeProvider>
   );
 };

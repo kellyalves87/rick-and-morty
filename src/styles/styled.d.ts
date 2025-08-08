@@ -1,20 +1,6 @@
 import 'styled-components';
+import { Theme } from './theme';
 
 declare module 'styled-components' {
-  export interface DefaultTheme {
-    colors: {
-      primary: string;
-      secondary: string;
-      paginationButton: {
-        background: string;
-        color: string;
-        hoverBackground: string;
-      };
-      clearButton: {
-        background: string;
-        color: string;
-        hoverBackground: string;
-      };
-    };
-  }
+  export interface DefaultTheme extends Theme {}
 }
