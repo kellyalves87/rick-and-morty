@@ -13,13 +13,13 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
     <Card
       sx={{
         transition: theme.transitions.normal,
-        backgroundColor: theme.colors.background.paper,
+        backgroundColor: theme.colors.background.card,
         borderRadius: theme.borderRadius.lg,
         boxShadow: theme.shadows.sm,
         "&:hover": {
           transform: theme.components.card.hoverTransform,
           boxShadow: theme.shadows.lg,
-          color: theme.colors.primary.main,
+          color: theme.colors.text.primary,
         },
       }}
     >
@@ -37,7 +37,7 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           sx={{
             fontFamily: theme.typography.fontFamily.primary,
             fontWeight: theme.typography.fontWeight.bold,
-            fontSize: theme.typography.fontSize["2xl"],
+            fontSize: theme.typography.fontSize.large,
             marginBottom: theme.spacing.sm,
           }}
         >
@@ -47,7 +47,7 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           variant="body2"
           sx={{
             color: theme.colors.text.secondary,
-            fontSize: theme.typography.fontSize.sm,
+            fontSize: theme.typography.fontSize,
             marginBottom: theme.spacing.xs,
           }}
         >
@@ -57,7 +57,7 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           variant="body2"
           sx={{
             color: theme.colors.text.secondary,
-            fontSize: theme.typography.fontSize.sm,
+            fontSize: theme.typography.fontSize,
             marginBottom: theme.spacing.xs,
           }}
         >
@@ -67,7 +67,7 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           variant="body2"
           sx={{
             color: theme.colors.text.secondary,
-            fontSize: theme.typography.fontSize.sm,
+            fontSize: theme.typography.fontSize,
           }}
         >
           Location: {character.location?.name ?? "Unknown"}

@@ -1,20 +1,17 @@
 export const typography = {
   fontFamily: {
-    primary: 'RickAndMortyFont1, sans-serif',
-    secondary: 'RickAndMortyFont2, sans-serif',
+    primary: 'RickAndMorty, sans-serif',
+    body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
   fontSize: {
-    xs: '0.75rem',
-    sm: '0.875rem',
-    md: '1rem',
-    lg: '1.125rem',
-    xl: '1.25rem',
-    '2xl': '1.5rem',
-    '3xl': '1.875rem',
+    small: '0.875rem',    // 14px
+    base: '1rem',         // 16px
+    large: '1.25rem',     // 20px
+    headline: '1.5rem',   // 24px
+    title: '2rem',        // 32px
   },
   fontWeight: {
     normal: 400,
-    medium: 500,
     bold: 700,
   },
 } as const;

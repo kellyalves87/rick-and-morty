@@ -17,7 +17,7 @@ const CharacterCard = memo(({ character }: CharacterCardProps) => {
         "&:hover": {
           transform: "scale(1.05)",
           boxShadow: 6,
-          color: theme.colors.primary,
+          color: theme.colors.text.primary,
         },
       }}
     >

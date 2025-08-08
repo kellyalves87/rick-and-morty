@@ -1,18 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
+import GetSchwifty from '../assets/fonts/get_schwifty.ttf';
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
-    font-family: 'RickAndMortyFont1';
-    src: url('../assets/fonts/get_schwifty.ttf') format('truetype');
+    font-family: 'RickAndMorty';
+    src: url(${GetSchwifty}) format('truetype');
     font-weight: normal;
     font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'RickAndMortyFont2';
-    src: url('../assets/fonts/get_schwifty\ 2.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
+    font-display: swap;
   }
   * {
     margin: 0;
@@ -28,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: ${({ theme }) => theme.typography.fontFamily.primary};
-    background-color: ${({ theme }) => theme.colors.background.default};
+    background-color: ${({ theme }) => theme.colors.background.main};
     color: ${({ theme }) => theme.colors.text.primary};
     line-height: 1.5;
   }
@@ -49,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${({ theme }) => theme.colors.primary.main};
-    color: ${({ theme }) => theme.colors.primary.contrastText};
+    background-color: ${({ theme }) => theme.colors.state.hover};
+    color: ${({ theme }) => theme.colors.text.light};
   }
 `;

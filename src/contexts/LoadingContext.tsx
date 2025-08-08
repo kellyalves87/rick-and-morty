@@ -52,7 +52,7 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({
       >
         <CircularProgress
           sx={{
-            color: theme.colors.primary.main,
+            color: theme.colors.brand.primary,
           }}
           size={60}
         />

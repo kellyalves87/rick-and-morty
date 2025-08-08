@@ -21,11 +21,12 @@ const App: React.FC = () => {
           <Typography
             component="h1"
             sx={{
-              fontFamily: theme.typography.fontFamily.primary,
-              fontWeight: theme.typography.fontWeight.bold,
+              fontFamily: "'RickAndMorty', sans-serif",
+              fontWeight: "normal",
               fontSize: "5rem",
-              color: theme.colors.primary.main,
+              color: theme.colors.brand.primary,
               textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
+              letterSpacing: "2px",
             }}
           >
             Rick and Morty
