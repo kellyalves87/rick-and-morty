@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ErrorBoundary } from "react-error-boundary";
 import { Box, Typography, Button } from "@mui/material";
 
-// Configuração do QueryClient com retry otimizado e cache
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -13,12 +12,11 @@ const queryClient = new QueryClient({
         if (error?.response?.status === 404) return false;
         return failureCount < 2;
       },
-      staleTime: 1000 * 60 * 5, // 5 minutos
+      staleTime: 1000 * 60 * 5,
     },
   },
 });
 
-// Componente de fallback para erros
 function ErrorFallback({
   error,
   resetErrorBoundary,

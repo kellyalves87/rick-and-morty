@@ -34,12 +34,10 @@ class Logger {
       this.logs.pop();
     }
 
-    // Em produção, você pode enviar os logs para um serviço de monitoramento
     if (process.env.NODE_ENV === 'production') {
       this.sendToMonitoringService(logEntry);
     }
 
-    // Em desenvolvimento, mostra no console
     if (process.env.NODE_ENV === 'development') {
       const consoleMethod = {
         info: console.info,
@@ -52,12 +50,6 @@ class Logger {
   }
 
   private sendToMonitoringService(logEntry: LogEntry) {
-    // Aqui você pode integrar com serviços como Sentry, LogRocket, etc.
-    // Por exemplo:
-    // Sentry.captureMessage(logEntry.message, {
-    //   level: logEntry.level,
-    //   extra: logEntry.context,
-    // });
   }
 
   info(message: string, context?: Record<string, unknown>) {
