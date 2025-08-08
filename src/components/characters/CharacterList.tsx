@@ -3,7 +3,7 @@ import { useCharacters } from "../../hooks/useCharacters";
 import { Box, Typography, Grid, Skeleton, Button } from "@mui/material";
 import { useTheme } from "styled-components";
 import { debounce } from "lodash";
-import CharacterListItem from "./CharacterListItem";
+import CharacterCard from "../CharacterCard";
 import CharacterFilter from "./CharacterFilter";
 import { CharacterFilters } from "../../types/character";
 
@@ -98,7 +98,7 @@ const CharacterList = () => {
           {characters.length > 0 ? (
             characters.map((character) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={character.id}>
-                <CharacterListItem character={character} />
+                <CharacterCard character={character} />
               </Grid>
             ))
           ) : (
