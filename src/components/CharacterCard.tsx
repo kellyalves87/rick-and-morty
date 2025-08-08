@@ -38,7 +38,7 @@ const StyledCard = styled.div`
   overflow: hidden;
   transform: translateZ(0);
   will-change: transform, box-shadow;
-  height: 450px; // Altura fixa para todos os cards
+  height: 450px;
 
   &::before {
     content: "";

@@ -76,16 +76,25 @@ const triviaData: TriviaItem[] = [
 ];
 
 const TriviaContainer = styled.div`
-  padding: 2rem;
+  padding: 1rem;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding-top: 0;
+  }
 `;
 
 const TriviaTitle = styled.h1`
   color: ${({ theme }) => theme.colors.brand.primary};
   font-size: 3rem;
   text-align: center;
-  margin-bottom: 3rem;
+  margin: 1rem 0 2rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: 2rem;
+    margin: 0.5rem 0 1.5rem;
+  }
   font-family: "get_schwifty", sans-serif;
   text-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary}80;
   letter-spacing: 2px;

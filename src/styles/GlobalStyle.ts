@@ -46,7 +46,6 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
 
-  /* Melhorias de acessibilidade */
   @media (prefers-reduced-motion: reduce) {
     * {
       animation-duration: 0.01ms !important;
@@ -55,8 +54,6 @@ export const GlobalStyle = createGlobalStyle`
       scroll-behavior: auto !important;
     }
   }
-
-  /* Estilo de scrollbar personalizado */
   ::-webkit-scrollbar {
     width: 8px;
   }

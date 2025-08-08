@@ -12,7 +12,6 @@ export const theme = {
 
 export type Theme = typeof theme;
 
-// Utility types for theme
 export type Color = keyof typeof theme.colors;
 export type Typography = keyof typeof theme.typography;
 export type Spacing = keyof typeof theme.spacing;

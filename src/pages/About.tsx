@@ -5,15 +5,22 @@ import { DefaultTheme } from "styled-components";
 const AboutContainer = styled.section`
   min-height: 100vh;
   padding: ${({ theme }) => theme.spacing["3xl"]};
+  padding-top: calc(80px + ${({ theme }) => theme.spacing["3xl"]});
   background-color: ${({ theme }) => theme.colors.background.main};
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: ${({ theme }) => theme.spacing.xl};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: ${({ theme }) => theme.spacing.xl};
+    padding-top: calc(80px + ${({ theme }) => theme.spacing.xl});
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: ${({ theme }) => theme.spacing.md};
+    padding-top: calc(80px + ${({ theme }) => theme.spacing.md});
   }
 `;
 

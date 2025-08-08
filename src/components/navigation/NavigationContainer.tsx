@@ -7,14 +7,12 @@ export const NavigationContainer: React.FC = () => {
 
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
-    // Previne rolagem quando o menu está aberto
     document.body.style.overflow = !isOpen ? "hidden" : "unset";
   }, [isOpen]);
 
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
       const target = event.target as HTMLElement;
-      // Verifica se o clique foi fora do menu e se não foi no botão do menu
       if (
         isOpen &&
         !target.closest("#navigation-menu") &&
@@ -26,7 +24,6 @@ export const NavigationContainer: React.FC = () => {
     [isOpen, toggleMenu]
   );
 
-  // Fechar o menu ao pressionar ESC ou clicar fora
   React.useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape" && isOpen) {

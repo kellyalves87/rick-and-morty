@@ -139,14 +139,12 @@ const CircuitPattern = styled.div`
 export const BackgroundElements: React.FC = () => {
   return (
     <BackgroundContainer>
-      {/* Portais */}
       <Portal style={{ top: "15%", left: "10%", transform: "scale(1.2)" }} />
       <Portal
         style={{ bottom: "20%", right: "15%", transform: "scale(0.8)" }}
       />
       <Portal style={{ top: "60%", left: "80%", transform: "scale(0.6)" }} />
 
-      {/* Linhas brilhantes */}
       <GlowingLine
         style={{ top: "10%", left: "30%", transform: "rotate(45deg)" }}
       />
@@ -156,8 +154,6 @@ export const BackgroundElements: React.FC = () => {
       <GlowingLine
         style={{ top: "40%", right: "20%", transform: "rotate(15deg)" }}
       />
-
-      {/* Padrões de circuito */}
       <CircuitPattern style={{ top: "30%", left: "60%" }} />
       <CircuitPattern
         style={{

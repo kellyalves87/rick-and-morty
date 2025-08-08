@@ -5,14 +5,14 @@ export const typography = {
     body: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
   fontSize: {
-    xs: '0.75rem',      // 12px
-    small: '0.875rem',   // 14px
-    base: '1rem',        // 16px
-    large: '1.25rem',    // 20px
-    xl: '1.5rem',        // 24px
-    '2xl': '2rem',       // 32px
-    '3xl': '2.5rem',     // 40px
-    '4xl': '3rem',       // 48px
+    xs: '0.75rem',
+    small: '0.875rem',
+    base: '1rem',
+    large: '1.25rem',
+    xl: '1.5rem',
+    '2xl': '2rem',
+    '3xl': '2.5rem',
+    '4xl': '3rem'
   },
   fontWeight: {
     normal: 400,

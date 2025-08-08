@@ -41,13 +41,14 @@ const StyledLink = styled(Link)<{ $isActive?: boolean }>`
 const StyledNav = styled.nav<{ isOpen: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background: ${({ theme }) => theme.colors.background.main};
-  height: 100vh;
+  height: calc(100vh - 80px);
   width: 100%;
   max-width: 400px;
   text-align: left;
   padding: 2rem;
+  margin-top: 80px;
   position: fixed;
   top: 0;
   left: 0;
