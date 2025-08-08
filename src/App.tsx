@@ -1,42 +1,42 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CharacterList } from "./components/characters";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { GlobalStyle } from "./styles/GlobalStyle";
-import { Typography, Box } from "@mui/material";
+import { Navigation } from "./components/navigation";
+import { BackgroundElements } from "./components/layout/BackgroundElements";
+import About from "./pages/About";
+import styled from "styled-components";
 import { LoadingProvider } from "./contexts/LoadingContext";
+
+const Main = styled.main`
+  margin-top: ${({ theme }) => theme.spacing.xl};
+`;
 
 const App: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <LoadingProvider>
-        <GlobalStyle />
-        <Box
-          component="header"
-          sx={{
-            padding: theme.spacing.xl,
-            textAlign: "center",
-          }}
-        >
-          <Typography
-            component="h1"
-            sx={{
-              fontFamily: "'RickAndMorty', sans-serif",
-              fontWeight: "normal",
-              fontSize: "5rem",
-              color: theme.colors.brand.primary,
-              textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
-              letterSpacing: "2px",
-            }}
-          >
-            Rick and Morty
-          </Typography>
-        </Box>
-        <Box component="main">
-          <CharacterList />
-        </Box>
-      </LoadingProvider>
-    </ThemeProvider>
+    <Router>
+      <ThemeProvider theme={theme}>
+        <LoadingProvider>
+          <GlobalStyle />
+          <BackgroundElements />
+          <Navigation />
+          <Routes>
+            <Route path="/" element={<About />} />
+            <Route
+              path="/personagens"
+              element={
+                <Main>
+                  <CharacterList />
+                </Main>
+              }
+            />
+            {/* TODO: Adicionar rota para Curiosidades quando o componente estiver pronto */}
+          </Routes>
+        </LoadingProvider>
+      </ThemeProvider>
+    </Router>
   );
 };
 
