@@ -1,19 +1,21 @@
 export const colors = {
   brand: {
-    primary: '#08C952',
-    secondary: '#1a202c',
+    primary: '#47CB54',
+    secondary: '#208D45',
+    accent: '#5C4D4A',
   },
   background: {
-    main: '#f0f0f0',
-    card: '#ffffff',
+    main: '#0D0D0D',
+    card: '#1A1A1A',
+    light: '#F0F2EB',
   },
   text: {
-    primary: '#1a202c',
-    secondary: '#4a5568',
-    light: '#ffffff',
+    primary: '#F0F2EB',
+    secondary: '#47CB54',
+    accent: '#208D45',
   },
   state: {
-    hover: 'rgba(8, 201, 82, 0.1)',
-    active: 'rgba(8, 201, 82, 0.2)',
+    hover: 'rgba(71, 203, 84, 0.1)',
+    active: 'rgba(71, 203, 84, 0.2)',
   }
 } as const;

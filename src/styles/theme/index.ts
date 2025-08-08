@@ -1,16 +1,22 @@
 import { colors } from './colors';
 import { typography } from './typography';
-import { spacing, borderRadius, shadows, transitions } from './metrics';
+import { metrics } from './metrics';
 import { components } from './components';
 
 export const theme = {
   colors,
   typography,
-  spacing,
-  borderRadius,
-  shadows,
-  transitions,
+  ...metrics,
   components,
 } as const;
 
 export type Theme = typeof theme;
+
+// Utility types for theme
+export type Color = keyof typeof theme.colors;
+export type Typography = keyof typeof theme.typography;
+export type Spacing = keyof typeof theme.spacing;
+export type BorderRadius = keyof typeof theme.borderRadius;
+export type Shadow = keyof typeof theme.shadows;
+export type Breakpoint = keyof typeof theme.breakpoints;
+export type ZIndex = keyof typeof theme.zIndex;
