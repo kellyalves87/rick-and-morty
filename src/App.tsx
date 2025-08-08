@@ -9,6 +9,7 @@ import { BackgroundElements } from "./components/layout/BackgroundElements";
 import About from "./pages/About";
 import styled from "styled-components";
 import { LoadingProvider } from "./contexts/LoadingContext";
+import CharacterTrivia from "./components/characters/CharacterTrivia";
 
 const Main = styled.main`
   margin-top: ${({ theme }) => theme.spacing.xl};
@@ -32,7 +33,14 @@ const App: React.FC = () => {
                 </Main>
               }
             />
-            {/* TODO: Adicionar rota para Curiosidades quando o componente estiver pronto */}
+            <Route
+              path="/curiosidades"
+              element={
+                <Main>
+                  <CharacterTrivia />
+                </Main>
+              }
+            />
           </Routes>
         </LoadingProvider>
       </ThemeProvider>
