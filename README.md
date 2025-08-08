@@ -2,22 +2,25 @@
 
 Uma aplicação React moderna para explorar personagens do Rick and Morty, construída com TypeScript e Material-UI.
 
+![Rick and Morty Logo](./public/logo192.png)
+
 ## 🚀 Tecnologias
 
 - React 18 com TypeScript
 - Styled Components para estilização
 - Material-UI para componentes
 - React Query para gerenciamento de estado e cache
+- Axios para requisições HTTP
 - Estrutura de Design System personalizada
 
 ## 📦 Instalação
 
 ```bash
 # Clone o repositório
-git clone https://github.com/kellyalves87/data-lovers-rick-and-morty.git
+git clone https://github.com/kellyalves87/rick-and-morty.git
 
 # Entre na pasta
-cd data-lovers-rick-and-morty
+cd rick-and-morty
 
 # Instale as dependências
 npm install
@@ -40,22 +43,28 @@ O projeto utiliza um Design System consistente com:
 
 ```
 src/
-  ├── components/     # Componentes React
-  │   └── characters/ # Componentes específicos de personagens
+  ├── components/     # Componentes React reutilizáveis
+  │   └── CharacterCards.tsx    # Componente de cards de personagens
   ├── hooks/         # Hooks personalizados
+  │   └── useCharacters.tsx    # Hook para gerenciar dados dos personagens
   ├── styles/        # Sistema de design e estilos
-  │   └── theme/     # Configurações do tema
-  ├── types/         # Definições de tipos TypeScript
+  │   ├── GlobalStyle.ts      # Estilos globais
+  │   ├── styled.d.ts         # Definições de tipos para styled-components
+  │   └── theme.ts            # Configuração do tema
+  ├── utils/         # Utilitários
+  │   └── logger.ts           # Sistema de logging
   └── assets/        # Recursos estáticos
+      └── fonts/             # Fontes personalizadas
 ```
 
 ## 🌟 Funcionalidades
 
 - 🔍 Busca de personagens
-- 🏷 Filtros por status, espécie e gênero
+- 🏷 Visualização detalhada dos personagens
 - 📱 Design responsivo
-- 🔄 Cache inteligente de dados
+- 🔄 Cache inteligente de dados com React Query
 - ⚡️ Otimização de performance
+- 📝 Sistema de logging para monitoramento
 
 ## Available Scripts
 
@@ -69,10 +78,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
