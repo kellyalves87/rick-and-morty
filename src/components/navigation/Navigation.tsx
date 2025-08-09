@@ -83,36 +83,6 @@ const MenuItem = styled.li`
   font-size: ${({ theme }) => theme.typography.fontSize["2xl"]};
 `;
 
-const MenuLink = styled.a`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.text.primary};
-  transition: color 0.3s ease;
-  position: relative;
-  padding: 0.5rem 0;
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: ${({ theme }) => theme.colors.brand.primary};
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary};
-  }
-
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.brand.primary};
-    outline: none;
-
-    &::before {
-      width: 100%;
-    }
-  }
-`;
-
 const Overlay = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
