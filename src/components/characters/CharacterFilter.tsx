@@ -125,8 +125,8 @@ const ClearButton = styled(Button)`
     ${({ theme }) => theme.colors.brand.primary}20 0%,
     ${({ theme }) => theme.colors.brand.primary}40 100%
   );
-  color: ${({ theme }) => theme.colors.text.primary};
-  text-transform: none;
+  color: #ffffff !important;
+  text-transform: uppercase;
   font-size: 1rem;
   padding: 0.5rem 2rem;
   height: 40px;
@@ -145,7 +145,7 @@ const ClearButton = styled(Button)`
       ${({ theme }) => theme.colors.brand.primary} 0%,
       ${({ theme }) => theme.colors.brand.secondary} 100%
     );
-    color: ${({ theme }) => theme.colors.text.primary};
+    color: white;
     transform: translateY(-2px);
     box-shadow: 0 0 15px ${({ theme }) => theme.colors.brand.primary}40;
     border-color: transparent;
@@ -228,8 +228,12 @@ const CharacterFilter = memo(
           </StyledFormControl>
         </Grid>
         <Grid item xs={12} sm={6} md={2}>
-          <ClearButton fullWidth onClick={onClearFilters}>
-            Limpar Filtros
+          <ClearButton
+            fullWidth
+            onClick={onClearFilters}
+            sx={{ color: "#ffffff !important" }}
+          >
+            LIMPAR FILTROS
           </ClearButton>
         </Grid>
       </Grid>
