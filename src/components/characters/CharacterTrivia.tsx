@@ -80,23 +80,23 @@ const TriviaContainer = styled.div`
   max-width: 1200px;
   margin: 0 auto;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.sm}) {
     padding-top: 0;
   }
 `;
 
 const TriviaTitle = styled.h1`
-  color: ${({ theme }) => theme.colors.brand.primary};
+  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 3rem;
   text-align: center;
   margin: 1rem 0 2rem;
 
-  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.sm}) {
     font-size: 2rem;
     margin: 0.5rem 0 1.5rem;
   }
   font-family: "get_schwifty", sans-serif;
-  text-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary}80;
+  text-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary}80;
   letter-spacing: 2px;
 `;
 
@@ -107,13 +107,13 @@ const TriviaGrid = styled.div`
 `;
 
 const TriviaCard = styled.div`
-  background: ${({ theme }) => theme.colors.background.card};
+  background: ${({ theme }) => theme.colors.background.surface};
   border-radius: 15px;
   padding: 1.5rem;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  border: 2px solid ${({ theme }) => theme.colors.brand.primary}30;
+  border: 2px solid ${({ theme }) => theme.colors.text.primary}30;
 
   &:before {
     content: "";
@@ -124,7 +124,7 @@ const TriviaCard = styled.div`
     height: 100%;
     background: linear-gradient(
       135deg,
-      ${({ theme }) => theme.colors.brand.primary}10 0%,
+      ${({ theme }) => theme.colors.text.primary}10 0%,
       transparent 100%
     );
     pointer-events: none;
@@ -132,13 +132,13 @@ const TriviaCard = styled.div`
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 20px ${({ theme }) => theme.colors.brand.primary}30;
-    border-color: ${({ theme }) => theme.colors.brand.primary}50;
+    box-shadow: 0 5px 20px ${({ theme }) => theme.colors.text.primary}30;
+    border-color: ${({ theme }) => theme.colors.text.primary}50;
   }
 `;
 
 const CharacterName = styled.h2`
-  color: ${({ theme }) => theme.colors.brand.primary};
+  color: ${({ theme }) => theme.colors.text.primary};
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
   font-family: "get_schwifty", sans-serif;
@@ -151,8 +151,8 @@ const CharacterName = styled.h2`
     left: 0;
     width: 50px;
     height: 3px;
-    background: ${({ theme }) => theme.colors.brand.primary};
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary};
+    background: ${({ theme }) => theme.colors.text.primary};
+    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
@@ -177,9 +177,9 @@ const FactItem = styled.li`
     top: 8px;
     width: 8px;
     height: 8px;
-    background: ${({ theme }) => theme.colors.brand.primary};
+    background: ${({ theme }) => theme.colors.text.primary};
     border-radius: 50%;
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.brand.primary};
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.text.primary};
   }
 
   &:hover {

@@ -52,7 +52,7 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({
       >
         <CircularProgress
           sx={{
-            color: theme.colors.brand.primary,
+            color: theme.colors.text.primary,
           }}
           size={60}
         />
@@ -61,8 +61,8 @@ export const LoadingProvider: React.FC<LoadingProviderProps> = ({
             <Typography
               variant="h6"
               sx={{
-                color: "#fff",
-                fontFamily: theme.typography.fontFamily.primary,
+                color: theme.colors.text.primary,
+                fontFamily: theme.typography.fontFamily.heading,
               }}
             >
               {message}

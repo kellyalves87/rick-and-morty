@@ -12,7 +12,7 @@ import { LoadingProvider } from "./contexts/LoadingContext";
 import CharacterTrivia from "./components/characters/CharacterTrivia";
 
 const Main = styled.main`
-  margin-top: ${({ theme }) => theme.spacing.xl};
+  margin-top: ${({ theme }) => theme.metrics.spacing.xl};
 `;
 
 const App: React.FC = () => {

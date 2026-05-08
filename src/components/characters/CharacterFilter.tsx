@@ -19,9 +19,9 @@ import { memo } from "react";
 const StyledTextField = styled(TextField)`
   .MuiOutlinedInput-root {
     height: 40px;
-    background: ${({ theme }) => theme.colors.background.card};
+    background: ${({ theme }) => theme.colors.background.surface};
     color: ${({ theme }) => theme.colors.text.primary};
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.metrics.radius.sm};
     transition: all 0.3s ease;
 
     input {
@@ -29,19 +29,19 @@ const StyledTextField = styled(TextField)`
     }
 
     fieldset {
-      border: 2px solid ${({ theme }) => theme.colors.brand.primary}30;
-      border-radius: 8px;
+      border: 2px solid ${({ theme }) => theme.colors.accent.primary}30;
+      border-radius: ${({ theme }) => theme.metrics.radius.sm};
     }
 
     &:hover fieldset {
-      border-color: ${({ theme }) => theme.colors.brand.primary};
+      border-color: ${({ theme }) => theme.colors.accent.primary};
     }
 
     &.Mui-focused {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.brand.primary}30;
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent.primary}30;
 
       fieldset {
-        border-color: ${({ theme }) => theme.colors.brand.primary};
+        border-color: ${({ theme }) => theme.colors.accent.primary};
       }
     }
   }
@@ -53,7 +53,7 @@ const StyledTextField = styled(TextField)`
     &.Mui-focused,
     &.MuiFormLabel-filled {
       transform: translate(14px, -9px) scale(0.75);
-      color: ${({ theme }) => theme.colors.brand.primary};
+      color: ${({ theme }) => theme.colors.accent.primary};
     }
   }
 `;
@@ -61,25 +61,25 @@ const StyledTextField = styled(TextField)`
 const StyledFormControl = styled(FormControl)`
   .MuiOutlinedInput-root {
     height: 40px;
-    background: ${({ theme }) => theme.colors.background.card};
+    background: ${({ theme }) => theme.colors.background.surface};
     color: ${({ theme }) => theme.colors.text.primary};
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.metrics.radius.sm};
     transition: all 0.3s ease;
 
     fieldset {
-      border: 2px solid ${({ theme }) => theme.colors.brand.primary}30;
-      border-radius: 8px;
+      border: 2px solid ${({ theme }) => theme.colors.accent.primary}30;
+      border-radius: ${({ theme }) => theme.metrics.radius.sm};
     }
 
     &:hover fieldset {
-      border-color: ${({ theme }) => theme.colors.brand.primary};
+      border-color: ${({ theme }) => theme.colors.accent.primary};
     }
 
     &.Mui-focused {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.brand.primary}30;
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors.accent.primary}30;
 
       fieldset {
-        border-color: ${({ theme }) => theme.colors.brand.primary};
+        border-color: ${({ theme }) => theme.colors.accent.primary};
       }
     }
   }
@@ -91,7 +91,7 @@ const StyledFormControl = styled(FormControl)`
     &.Mui-focused,
     &.MuiFormLabel-filled {
       transform: translate(14px, -9px) scale(0.75);
-      color: ${({ theme }) => theme.colors.brand.primary};
+      color: ${({ theme }) => theme.colors.accent.primary};
     }
   }
 
@@ -101,20 +101,20 @@ const StyledFormControl = styled(FormControl)`
 `;
 const StyledMenuItem = styled(MenuItem)`
   color: ${({ theme }) => theme.colors.text.primary};
-  background: ${({ theme }) => theme.colors.background.card};
+  background: ${({ theme }) => theme.colors.background.surface};
   height: 35px;
   min-height: 35px;
   padding: 0 14px;
 
   &:hover {
-    background: ${({ theme }) => theme.colors.brand.primary}20;
+    background: ${({ theme }) => theme.colors.accent.primary}20;
   }
 
   &.Mui-selected {
-    background: ${({ theme }) => theme.colors.brand.primary}40;
+    background: ${({ theme }) => theme.colors.accent.primary}40;
 
     &:hover {
-      background: ${({ theme }) => theme.colors.brand.primary}60;
+      background: ${({ theme }) => theme.colors.accent.primary}60;
     }
   }
 `;
@@ -122,16 +122,16 @@ const StyledMenuItem = styled(MenuItem)`
 const ClearButton = styled(Button)`
   background: linear-gradient(
     135deg,
-    ${({ theme }) => theme.colors.brand.primary}20 0%,
-    ${({ theme }) => theme.colors.brand.primary}40 100%
+    ${({ theme }) => theme.colors.accent.primary}20 0%,
+    ${({ theme }) => theme.colors.accent.primary}40 100%
   );
   color: ${({ theme }) => theme.colors.text.primary};
   text-transform: none;
   font-size: 1rem;
   padding: 0.5rem 2rem;
   height: 40px;
-  border-radius: 8px;
-  border: 2px solid ${({ theme }) => theme.colors.brand.primary}50;
+  border-radius: ${({ theme }) => theme.metrics.radius.sm};
+  border: 2px solid ${({ theme }) => theme.colors.accent.primary}50;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -142,12 +142,12 @@ const ClearButton = styled(Button)`
   &:hover {
     background: linear-gradient(
       135deg,
-      ${({ theme }) => theme.colors.brand.primary} 0%,
-      ${({ theme }) => theme.colors.brand.secondary} 100%
+      ${({ theme }) => theme.colors.accent.primary} 0%,
+      ${({ theme }) => theme.colors.accent.primary} 100%
     );
     color: ${({ theme }) => theme.colors.text.primary};
     transform: translateY(-2px);
-    box-shadow: 0 0 15px ${({ theme }) => theme.colors.brand.primary}40;
+    box-shadow: 0 0 15px ${({ theme }) => theme.colors.accent.primary}40;
     border-color: transparent;
   }
 
@@ -234,7 +234,7 @@ const CharacterFilter = memo(
         </Grid>
       </Grid>
     );
-  }
+  },
 );
 
 CharacterFilter.displayName = "CharacterFilter";

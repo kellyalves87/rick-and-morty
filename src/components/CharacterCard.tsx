@@ -5,29 +5,29 @@ import styled, { keyframes } from "styled-components";
 
 const glowingBorder = keyframes`
   0% {
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.brand.primary}60,
-                0 0 10px ${({ theme }) => theme.colors.brand.primary}40;
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.text.primary}60,
+                0 0 10px ${({ theme }) => theme.colors.text.primary}40;
   }
   50% {
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary}80,
-                0 0 20px ${({ theme }) => theme.colors.brand.primary}60,
-                0 0 30px ${({ theme }) => theme.colors.brand.primary}40;
+    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary}80,
+                0 0 20px ${({ theme }) => theme.colors.text.primary}60,
+                0 0 30px ${({ theme }) => theme.colors.text.primary}40;
   }
   100% {
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.brand.primary}60,
-                0 0 10px ${({ theme }) => theme.colors.brand.primary}40;
+    box-shadow: 0 0 5px ${({ theme }) => theme.colors.text.primary}60,
+                0 0 10px ${({ theme }) => theme.colors.text.primary}40;
   }
 `;
 
 const StyledCard = styled.div`
   background: linear-gradient(
     145deg,
-    ${({ theme }) => theme.colors.background.card} 0%,
-    ${({ theme }) => theme.colors.background.main} 100%
+    ${({ theme }) => theme.colors.background.secondary} 0%,
+    ${({ theme }) => theme.colors.background.secondary} 100%
   );
-  border-radius: 16px;
+  border-radius: ${({ theme }) => theme.metrics.radius.lg};
   backdrop-filter: blur(8px);
-  border: 2px solid ${({ theme }) => theme.colors.brand.primary};
+  border: 2px solid ${({ theme }) => theme.colors.text.primary};
   opacity: 1;
   visibility: visible;
   display: flex;
@@ -49,7 +49,7 @@ const StyledCard = styled.div`
     height: 200%;
     background: radial-gradient(
       circle at center,
-      ${({ theme }) => theme.colors.brand.primary}10,
+      ${({ theme }) => theme.colors.text.primary}10,
       transparent 70%
     );
     opacity: 0.5;
@@ -61,9 +61,9 @@ const CharacterImage = styled.img`
   width: 100%;
   height: 250px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.metrics.radius.sm};
   margin-bottom: 1rem;
-  border: 2px solid ${({ theme }) => theme.colors.brand.primary}30;
+  border: 2px solid ${({ theme }) => theme.colors.text.primary}30;
 `;
 
 const scanLine = keyframes`
@@ -76,12 +76,12 @@ const scanLine = keyframes`
 `;
 
 const CardTitle = styled(Typography)`
-  font-family: ${({ theme }) => theme.typography.fontFamily.title};
+  font-family: ${({ theme }) => theme.typography.fontFamily.body};
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.brand.primary};
+  color: ${({ theme }) => theme.colors.text.primary};
   margin-bottom: 0.5rem;
   font-size: 1.5rem;
-  text-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary}60;
+  text-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary}60;
   position: relative;
 `;
 
@@ -99,10 +99,10 @@ const CardInfo = styled(Typography)`
     top: 50%;
     width: 8px;
     height: 8px;
-    background: ${({ theme }) => theme.colors.brand.primary};
+    background: ${({ theme }) => theme.colors.text.primary};
     border-radius: 50%;
     transform: translateY(-50%);
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.brand.primary};
+    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary};
   }
 `;
 
@@ -115,7 +115,7 @@ const ScanLine = styled.div`
   background: linear-gradient(
     to bottom,
     transparent,
-    ${({ theme }) => theme.colors.brand.primary}20,
+    ${({ theme }) => theme.colors.text.primary}20,
     transparent
   );
   animation: ${scanLine} 3s linear infinite;

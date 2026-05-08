@@ -13,8 +13,8 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
     <Card
       sx={{
         transition: theme.transitions.normal,
-        backgroundColor: theme.colors.background.card,
-        borderRadius: theme.borderRadius.lg,
+        backgroundColor: theme.colors.background.surface,
+        borderRadius: theme.metrics.radius.lg,
         boxShadow: theme.shadows.sm,
         "&:hover": {
           transform: theme.components.card.hoverTransform,
@@ -35,10 +35,10 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           variant="h5"
           component="div"
           sx={{
-            fontFamily: theme.typography.fontFamily.primary,
+            fontFamily: theme.typography.fontFamily.body,
             fontWeight: theme.typography.fontWeight.bold,
-            fontSize: theme.typography.fontSize.large,
-            marginBottom: theme.spacing.sm,
+            fontSize: theme.typography.fontSize.lg,
+            marginBottom: theme.metrics.spacing.sm,
           }}
         >
           {character.name}
@@ -48,7 +48,7 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           sx={{
             color: theme.colors.text.secondary,
             fontSize: theme.typography.fontSize,
-            marginBottom: theme.spacing.xs,
+            marginBottom: theme.metrics.spacing.xs,
           }}
         >
           Status: {character.status}
@@ -58,7 +58,7 @@ const CharacterListItem = memo(({ character }: CharacterListItemProps) => {
           sx={{
             color: theme.colors.text.secondary,
             fontSize: theme.typography.fontSize,
-            marginBottom: theme.spacing.xs,
+            marginBottom: theme.metrics.spacing.xs,
           }}
         >
           Species: {character.species}

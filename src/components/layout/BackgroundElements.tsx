@@ -55,12 +55,13 @@ const Portal = styled.div`
   height: 200px;
   border-radius: 50%;
   background: ${({ theme }) => `radial-gradient(circle at center, 
-    ${theme.colors.brand.primary}30 0%,
-    ${theme.colors.brand.primary}10 50%,
+    ${theme.colors.text.primary}30 0%,
+    ${theme.colors.text.primary}10 50%,
     transparent 70%
   )`};
-  box-shadow: 0 0 60px ${({ theme }) => theme.colors.brand.primary}40,
-    inset 0 0 40px ${({ theme }) => theme.colors.brand.primary};
+  box-shadow:
+    0 0 60px ${({ theme }) => theme.colors.text.primary}40,
+    inset 0 0 40px ${({ theme }) => theme.colors.text.primary};
   animation: ${pulse} 4s ease-in-out infinite;
   filter: blur(1px);
 
@@ -73,9 +74,10 @@ const Portal = styled.div`
     height: 90%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    border: 3px solid ${({ theme }) => theme.colors.brand.primary}80;
-    box-shadow: 0 0 20px ${({ theme }) => theme.colors.brand.primary}60,
-      inset 0 0 20px ${({ theme }) => theme.colors.brand.primary}60;
+    border: 3px solid ${({ theme }) => theme.colors.text.primary}80;
+    box-shadow:
+      0 0 20px ${({ theme }) => theme.colors.text.primary}60,
+      inset 0 0 20px ${({ theme }) => theme.colors.text.primary}60;
     animation: ${spin} 8s linear infinite;
   }
 
@@ -88,9 +90,10 @@ const Portal = styled.div`
     height: 70%;
     transform: translate(-50%, -50%) rotate(45deg);
     border-radius: 50%;
-    border: 2px solid ${({ theme }) => theme.colors.brand.secondary}60;
-    box-shadow: 0 0 30px ${({ theme }) => theme.colors.brand.secondary}40,
-      inset 0 0 30px ${({ theme }) => theme.colors.brand.secondary}40;
+    border: 2px solid ${({ theme }) => theme.colors.text.primary}60;
+    box-shadow:
+      0 0 30px ${({ theme }) => theme.colors.text.primary}40,
+      inset 0 0 30px ${({ theme }) => theme.colors.text.primary}40;
     animation: ${spin} 12s linear infinite reverse;
   }
 `;
@@ -99,9 +102,10 @@ const GlowingLine = styled.div`
   position: absolute;
   width: 3px;
   height: 200px;
-  background: ${({ theme }) => theme.colors.brand.primary};
-  box-shadow: 0 0 20px ${({ theme }) => theme.colors.brand.primary},
-    0 0 40px ${({ theme }) => theme.colors.brand.primary}40;
+  background: ${({ theme }) => theme.colors.text.primary};
+  box-shadow:
+    0 0 20px ${({ theme }) => theme.colors.text.primary},
+    0 0 40px ${({ theme }) => theme.colors.text.primary}40;
   opacity: 0.6;
   animation: ${float} 6s ease-in-out infinite;
   filter: blur(0.5px);
@@ -111,13 +115,13 @@ const CircuitPattern = styled.div`
   position: absolute;
   width: 300px;
   height: 300px;
-  border: 2px solid ${({ theme }) => theme.colors.brand.primary}30;
+  border: 2px solid ${({ theme }) => theme.colors.text.primary}30;
   &::before,
   &::after {
     content: "";
     position: absolute;
-    background: ${({ theme }) => theme.colors.brand.primary}20;
-    box-shadow: 0 0 15px ${({ theme }) => theme.colors.brand.primary}40;
+    background: ${({ theme }) => theme.colors.text.primary}20;
+    box-shadow: 0 0 15px ${({ theme }) => theme.colors.text.primary}40;
   }
   &::before {
     top: 50%;
