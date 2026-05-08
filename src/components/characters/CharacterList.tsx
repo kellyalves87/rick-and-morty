@@ -25,12 +25,12 @@ const CharacterList = () => {
       setFilters((prev) => ({ ...prev, [key]: value }));
       setPage(1);
     },
-    []
+    [],
   );
 
   const debouncedFilterChange = useMemo(
     () => debounce(handleFilterChange, 300),
-    [handleFilterChange]
+    [handleFilterChange],
   );
 
   const handleClearFilters = useCallback(() => {
@@ -127,7 +127,7 @@ const CharacterList = () => {
             "&:hover": {
               backgroundColor: theme.components.button.primary.hoverBackground,
             },
-            transition: theme.transitions.normal,
+            transition: theme.metrics.transitions.normal,
           }}
         >
           Anterior
@@ -137,7 +137,7 @@ const CharacterList = () => {
           alignSelf="center"
           sx={{
             color: theme.colors.text.primary,
-            fontFamily: theme.typography.fontFamily.primary,
+            fontFamily: theme.typography.fontFamily.body,
           }}
         >
           Página {page}
@@ -152,7 +152,7 @@ const CharacterList = () => {
             "&:hover": {
               backgroundColor: theme.components.button.primary.hoverBackground,
             },
-            transition: theme.transitions.normal,
+            transition: theme.metrics.transitions.normal,
           }}
         >
           Próxima
