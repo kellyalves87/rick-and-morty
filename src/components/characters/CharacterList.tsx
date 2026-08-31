@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
-import { Box, Grid, Skeleton } from "@mui/material";
+import { Box, Grid2, Skeleton } from "@mui/material";
 import styled from "styled-components";
 import { debounce } from "lodash";
 
@@ -200,9 +200,9 @@ const CharacterList = () => {
 
       {isLoading ? (
         <GridWrapper>
-          <Grid container spacing={3}>
+          <Grid2 container spacing={3}>
             {Array.from({ length: 8 }).map((_, index) => (
-              <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
+              <Grid2 size={{ xs: 12, sm: 6, md: 4, xl: 3 }} key={index}>
                 <SkeletonCard>
                   <Skeleton
                     variant="rectangular"
@@ -217,20 +217,23 @@ const CharacterList = () => {
                     <Skeleton variant="text" height={24} width="80%" />
                   </Box>
                 </SkeletonCard>
-              </Grid>
+              </Grid2>
             ))}
-          </Grid>
+          </Grid2>
         </GridWrapper>
       ) : characters.length > 0 ? (
         <>
           <GridWrapper>
-            <Grid container spacing={3}>
+            <Grid2 container spacing={3}>
               {characters.map((character) => (
-                <Grid item xs={12} sm={6} md={4} xl={3} key={character.id}>
+                <Grid2
+                  size={{ xs: 12, sm: 6, md: 4, xl: 3 }}
+                  key={character.id}
+                >
                   <CharacterCard character={character} />
-                </Grid>
+                </Grid2>
               ))}
-            </Grid>
+            </Grid2>
           </GridWrapper>
 
           <PaginationWrapper aria-label="Characters pagination">

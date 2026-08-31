@@ -1,6 +1,6 @@
 import {
   FormControl,
-  Grid,
+  Grid2,
   InputLabel,
   MenuItem,
   Select,
@@ -230,8 +230,8 @@ const CharacterFilter = memo(
           <ClearButton onClick={onClearFilters}>Limpar filtros</ClearButton>
         </FiltersHeader>
 
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+        <Grid2 container spacing={2}>
+          <Grid2 size={{ xs: 12, md: 6 }}>
             <StyledTextField
               label="Nome"
               variant="outlined"
@@ -240,9 +240,9 @@ const CharacterFilter = memo(
               onChange={(e) => onFilterChange("name", e.target.value)}
               aria-label="Filtrar por nome"
             />
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid2 size={{ xs: 12, sm: 6, md: 2 }}>
             <StyledFormControl fullWidth>
               <InputLabel id="status-label">Status</InputLabel>
               <Select
@@ -258,9 +258,9 @@ const CharacterFilter = memo(
                 ))}
               </Select>
             </StyledFormControl>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid2 size={{ xs: 12, sm: 6, md: 2 }}>
             <StyledFormControl fullWidth>
               <InputLabel id="species-label">Espécies</InputLabel>
               <Select
@@ -276,9 +276,9 @@ const CharacterFilter = memo(
                 ))}
               </Select>
             </StyledFormControl>
-          </Grid>
+          </Grid2>
 
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid2 size={{ xs: 12, sm: 6, md: 2 }}>
             <StyledFormControl fullWidth>
               <InputLabel id="gender-label">Gênero</InputLabel>
               <Select
@@ -294,8 +294,8 @@ const CharacterFilter = memo(
                 ))}
               </Select>
             </StyledFormControl>
-          </Grid>
-        </Grid>
+          </Grid2>
+        </Grid2>
       </FiltersPanel>
     );
   },
