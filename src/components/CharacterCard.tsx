@@ -1,143 +1,182 @@
-import { Typography } from "@mui/material";
-import { Character } from "../types/character";
 import { memo } from "react";
-import styled, { keyframes } from "styled-components";
-
-const glowingBorder = keyframes`
-  0% {
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.text.primary}60,
-                0 0 10px ${({ theme }) => theme.colors.text.primary}40;
-  }
-  50% {
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary}80,
-                0 0 20px ${({ theme }) => theme.colors.text.primary}60,
-                0 0 30px ${({ theme }) => theme.colors.text.primary}40;
-  }
-  100% {
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.text.primary}60,
-                0 0 10px ${({ theme }) => theme.colors.text.primary}40;
-  }
-`;
-
-const StyledCard = styled.div`
-  background: linear-gradient(
-    145deg,
-    ${({ theme }) => theme.colors.background.secondary} 0%,
-    ${({ theme }) => theme.colors.background.secondary} 100%
-  );
-  border-radius: ${({ theme }) => theme.metrics.radius.lg};
-  backdrop-filter: blur(8px);
-  border: 2px solid ${({ theme }) => theme.colors.text.primary};
-  opacity: 1;
-  visibility: visible;
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
-  animation: ${glowingBorder} 3s infinite;
-  position: relative;
-  overflow: hidden;
-  transform: translateZ(0);
-  will-change: transform, box-shadow;
-  height: 450px;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(
-      circle at center,
-      ${({ theme }) => theme.colors.text.primary}10,
-      transparent 70%
-    );
-    opacity: 0.5;
-    pointer-events: none;
-  }
-`;
-
-const CharacterImage = styled.img`
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-  border-radius: ${({ theme }) => theme.metrics.radius.sm};
-  margin-bottom: 1rem;
-  border: 2px solid ${({ theme }) => theme.colors.text.primary}30;
-`;
-
-const scanLine = keyframes`
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(100%);
-  }
-`;
-
-const CardTitle = styled(Typography)`
-  font-family: ${({ theme }) => theme.typography.fontFamily.body};
-  font-weight: bold;
-  color: ${({ theme }) => theme.colors.text.primary};
-  margin-bottom: 0.5rem;
-  font-size: 1.5rem;
-  text-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary}60;
-  position: relative;
-`;
-
-const CardInfo = styled(Typography)`
-  color: ${({ theme }) => theme.colors.text.primary};
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  position: relative;
-  padding-left: 1rem;
-
-  &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 8px;
-    height: 8px;
-    background: ${({ theme }) => theme.colors.text.primary};
-    border-radius: 50%;
-    transform: translateY(-50%);
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary};
-  }
-`;
-
-const ScanLine = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    ${({ theme }) => theme.colors.text.primary}20,
-    transparent
-  );
-  animation: ${scanLine} 3s linear infinite;
-  pointer-events: none;
-`;
+import styled from "styled-components";
+import { Character } from "../types/character";
 
 interface CharacterCardProps {
   character: Character;
 }
 
+const Card = styled.article`
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 20%,
+      rgba(255, 255, 255, 0.04) 50%,
+      transparent 80%
+    );
+    transform: translateX(-120%);
+    transition: transform ${({ theme }) => theme.metrics.transitions.slow};
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    transform: translateX(120%);
+  }
+`;
+
+const ImageWrapper = styled.div`
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+`;
+
+const CharacterImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+`;
+
+const ImageOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(5, 8, 22, 0.85) 0%,
+    rgba(5, 8, 22, 0.1) 50%,
+    transparent 100%
+  );
+`;
+
+const StatusBadge = styled.span<{ $status: Character["status"] }>`
+  position: absolute;
+  top: ${({ theme }) => theme.metrics.spacing.md};
+  left: ${({ theme }) => theme.metrics.spacing.md};
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 12px;
+  border-radius: ${({ theme }) => theme.metrics.radius.sm};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+
+  color: ${({ theme }) => theme.colors.text.primary};
+  background: rgba(5, 8, 22, 0.72);
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  backdrop-filter: blur(8px);
+
+  &::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: ${({ theme, $status }) => {
+      if ($status === "Alive") return theme.colors.status.alive;
+      if ($status === "Dead") return theme.colors.status.dead;
+      return theme.colors.status.unknown;
+    }};
+    box-shadow: 0 0 12px
+      ${({ theme, $status }) => {
+        if ($status === "Alive") return theme.colors.status.alive;
+        if ($status === "Dead") return theme.colors.status.dead;
+        return theme.colors.status.unknown;
+      }};
+  }
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.md};
+  padding: ${({ theme }) => theme.metrics.spacing.lg};
+`;
+
+const Name = styled.h3`
+  font-family: ${({ theme }) => theme.typography.fontFamily.heading};
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const MetaRow = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => theme.metrics.spacing.sm};
+`;
+
+const MetaBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 12px;
+
+  border-radius: ${({ theme }) => theme.metrics.radius.pill || "999px"};
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  background: ${({ theme }) => theme.colors.accent.soft};
+  color: ${({ theme }) => theme.colors.text.secondary};
+
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.medium};
+`;
+
+const InfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const Label = styled.span`
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.text.muted};
+`;
+
+const Value = styled.p`
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
+  color: ${({ theme }) => theme.colors.text.secondary};
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
 const CharacterCard = memo(({ character }: CharacterCardProps) => {
   return (
-    <StyledCard>
-      <ScanLine />
-      <CharacterImage src={character.image} alt={character.name} />
-      <div>
-        <CardTitle variant="h5">{character.name}</CardTitle>
-        <CardInfo>Status: {character.status}</CardInfo>
-        <CardInfo>Species: {character.species}</CardInfo>
-        <CardInfo>Location: {character.location?.name ?? "Unknown"}</CardInfo>
-      </div>
-    </StyledCard>
+    <Card>
+      <ImageWrapper>
+        <CharacterImage src={character.image} alt={character.name} />
+        <ImageOverlay />
+        <StatusBadge $status={character.status}>{character.status}</StatusBadge>
+      </ImageWrapper>
+
+      <Content>
+        <Name>{character.name}</Name>
+
+        <MetaRow>
+          <MetaBadge>{character.species}</MetaBadge>
+          {character.gender && <MetaBadge>{character.gender}</MetaBadge>}
+        </MetaRow>
+
+        <InfoBlock>
+          <Label>Last known location</Label>
+          <Value>{character.location?.name ?? "Unknown"}</Value>
+        </InfoBlock>
+      </Content>
+    </Card>
   );
 });
 

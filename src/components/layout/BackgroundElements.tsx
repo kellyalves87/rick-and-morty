@@ -1,34 +1,34 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-const float = keyframes`
+const drift = keyframes`
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-20px) rotate(5deg);
+    transform: translate3d(0, -12px, 0);
   }
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate3d(0, 0, 0);
   }
 `;
 
 const pulse = keyframes`
   0% {
-    opacity: 0.5;
+    opacity: 0.18;
     transform: scale(1);
   }
   50% {
-    opacity: 0.8;
-    transform: scale(1.05);
+    opacity: 0.28;
+    transform: scale(1.03);
   }
   100% {
-    opacity: 0.5;
+    opacity: 0.18;
     transform: scale(1);
   }
 `;
 
-const spin = keyframes`
+const rotateSlow = keyframes`
   from {
     transform: rotate(0deg);
   }
@@ -39,133 +39,161 @@ const spin = keyframes`
 
 const BackgroundContainer = styled.div`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
+  inset: 0;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background: radial-gradient(circle at 50% 50%, #0d0d0d 0%, #000000 100%);
+  background:
+    radial-gradient(circle at top, rgba(108, 255, 141, 0.06), transparent 35%),
+    linear-gradient(180deg, #050816 0%, #0b1020 100%);
+`;
+
+const Overlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(5, 8, 22, 0.18) 55%,
+    rgba(5, 8, 22, 0.45) 100%
+  );
 `;
 
 const Portal = styled.div`
   position: absolute;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background: ${({ theme }) => `radial-gradient(circle at center, 
-    ${theme.colors.text.primary}30 0%,
-    ${theme.colors.text.primary}10 50%,
+  border-radius: 999px;
+  filter: blur(1px);
+  opacity: 0.75;
+  animation: ${pulse} 10s ease-in-out infinite;
+
+  background: ${({ theme }) => `radial-gradient(
+    circle at center,
+    ${theme.colors.accent.primary}22 0%,
+    ${theme.colors.accent.primary}10 35%,
     transparent 70%
   )`};
-  box-shadow:
-    0 0 60px ${({ theme }) => theme.colors.text.primary}40,
-    inset 0 0 40px ${({ theme }) => theme.colors.text.primary};
-  animation: ${pulse} 4s ease-in-out infinite;
-  filter: blur(1px);
 
   &::before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    height: 90%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 3px solid ${({ theme }) => theme.colors.text.primary}80;
-    box-shadow:
-      0 0 20px ${({ theme }) => theme.colors.text.primary}60,
-      inset 0 0 20px ${({ theme }) => theme.colors.text.primary}60;
-    animation: ${spin} 8s linear infinite;
+    inset: 12%;
+    border-radius: inherit;
+    border: 1px solid ${({ theme }) => theme.colors.border.soft};
+    box-shadow: 0 0 24px ${({ theme }) => theme.colors.accent.primary}18;
+    animation: ${rotateSlow} 18s linear infinite;
   }
 
   &::after {
     content: "";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 70%;
-    height: 70%;
-    transform: translate(-50%, -50%) rotate(45deg);
-    border-radius: 50%;
-    border: 2px solid ${({ theme }) => theme.colors.text.primary}60;
-    box-shadow:
-      0 0 30px ${({ theme }) => theme.colors.text.primary}40,
-      inset 0 0 30px ${({ theme }) => theme.colors.text.primary}40;
-    animation: ${spin} 12s linear infinite reverse;
+    inset: 24%;
+    border-radius: inherit;
+    border: 1px solid ${({ theme }) => theme.colors.accent.primary}20;
+    animation: ${rotateSlow} 26s linear infinite reverse;
   }
 `;
 
 const GlowingLine = styled.div`
   position: absolute;
-  width: 3px;
-  height: 200px;
-  background: ${({ theme }) => theme.colors.text.primary};
-  box-shadow:
-    0 0 20px ${({ theme }) => theme.colors.text.primary},
-    0 0 40px ${({ theme }) => theme.colors.text.primary}40;
-  opacity: 0.6;
-  animation: ${float} 6s ease-in-out infinite;
-  filter: blur(0.5px);
+  width: 1px;
+  height: 220px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    ${({ theme }) => theme.colors.accent.primary}55,
+    transparent
+  );
+  opacity: 0.22;
+  filter: blur(0.4px);
+  animation: ${drift} 12s ease-in-out infinite;
+
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.md}) {
+    display: none;
+  }
 `;
 
 const CircuitPattern = styled.div`
   position: absolute;
-  width: 300px;
-  height: 300px;
-  border: 2px solid ${({ theme }) => theme.colors.text.primary}30;
+  width: 240px;
+  height: 240px;
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  opacity: 0.12;
+  animation: ${rotateSlow} 30s linear infinite;
+
   &::before,
   &::after {
     content: "";
     position: absolute;
-    background: ${({ theme }) => theme.colors.text.primary}20;
-    box-shadow: 0 0 15px ${({ theme }) => theme.colors.text.primary}40;
+    background: ${({ theme }) => theme.colors.accent.primary}22;
   }
+
   &::before {
     top: 50%;
-    left: -50%;
-    width: 200%;
-    height: 2px;
-    transform: rotate(45deg);
+    left: -20%;
+    width: 140%;
+    height: 1px;
+    transform: rotate(35deg);
   }
+
   &::after {
-    top: -50%;
+    top: -20%;
     left: 50%;
-    width: 2px;
-    height: 200%;
-    transform: rotate(45deg);
+    width: 1px;
+    height: 140%;
+    transform: rotate(35deg);
   }
-  animation: ${spin} 20s linear infinite;
+
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.md}) {
+    display: none;
+  }
 `;
 
 export const BackgroundElements: React.FC = () => {
   return (
-    <BackgroundContainer>
-      <Portal style={{ top: "15%", left: "10%", transform: "scale(1.2)" }} />
+    <BackgroundContainer aria-hidden="true">
       <Portal
-        style={{ bottom: "20%", right: "15%", transform: "scale(0.8)" }}
-      />
-      <Portal style={{ top: "60%", left: "80%", transform: "scale(0.6)" }} />
-
-      <GlowingLine
-        style={{ top: "10%", left: "30%", transform: "rotate(45deg)" }}
-      />
-      <GlowingLine
-        style={{ bottom: "20%", right: "40%", transform: "rotate(-30deg)" }}
-      />
-      <GlowingLine
-        style={{ top: "40%", right: "20%", transform: "rotate(15deg)" }}
-      />
-      <CircuitPattern style={{ top: "30%", left: "60%" }} />
-      <CircuitPattern
         style={{
-          bottom: "40%",
-          right: "70%",
-          transform: "rotate(30deg) scale(0.7)",
+          width: "280px",
+          height: "280px",
+          top: "8%",
+          left: "6%",
         }}
       />
+
+      <Portal
+        style={{
+          width: "220px",
+          height: "220px",
+          bottom: "12%",
+          right: "10%",
+        }}
+      />
+
+      <GlowingLine
+        style={{
+          top: "14%",
+          left: "30%",
+          transform: "rotate(24deg)",
+        }}
+      />
+
+      <GlowingLine
+        style={{
+          bottom: "18%",
+          right: "28%",
+          transform: "rotate(-18deg)",
+        }}
+      />
+
+      <CircuitPattern
+        style={{
+          top: "34%",
+          right: "12%",
+          transform: "rotate(18deg)",
+        }}
+      />
+
+      <Overlay />
     </BackgroundContainer>
   );
 };

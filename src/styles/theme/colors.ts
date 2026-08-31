@@ -20,16 +20,17 @@ export const colors = {
   accent: {
     primary: "#6cff8d",
     hover: "#8cffaa",
+    soft: "rgba(108, 255, 141, 0.12)",
+  },
+
+  state: {
+    hover: "rgba(108, 255, 141, 0.16)",
+    focus: "rgba(108, 255, 141, 0.2)",
   },
 
   status: {
     alive: "#6cff8d",
     dead: "#ff6b81",
     unknown: "#f7c873",
-  },
-
-  state: {
-    hover: "rgba(108, 255, 141, 0.16)",
-    focus: "rgba(108, 255, 141, 0.28)",
   },
 } as const;

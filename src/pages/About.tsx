@@ -1,156 +1,209 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
-import { DefaultTheme } from "styled-components";
+import styled from "styled-components";
+import PageHeader from "../components/common/PageHeader";
 
 const AboutContainer = styled.section`
-  min-height: 100vh;
-  padding: ${({ theme }) => theme.metrics.spacing.xxl};
-  padding-top: calc(80px + ${({ theme }) => theme.metrics.spacing.xxl});
-  background-color: ${({ theme }) => theme.colors.background.primary};
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   gap: ${({ theme }) => theme.metrics.spacing.xl};
-
-  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.md}) {
-    padding: ${({ theme }) => theme.metrics.spacing.xl};
-    padding-top: calc(80px + ${({ theme }) => theme.metrics.spacing.xl});
-  }
-
-  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.sm}) {
-    padding: ${({ theme }) => theme.metrics.spacing.md};
-    padding-top: calc(80px + ${({ theme }) => theme.metrics.spacing.md});
-  }
-`;
-
-const glowAnimation = keyframes`
-  0% {
-    text-shadow: 0 0 10px ${({ theme }: { theme: DefaultTheme }) =>
-      theme.colors.text.primary}80,
-                0 0 20px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}60,
-                0 0 30px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}40;
-  }
-  50% {
-    text-shadow: 0 0 20px ${({ theme }: { theme: DefaultTheme }) =>
-      theme.colors.text.primary}80,
-                0 0 30px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}60,
-                0 0 40px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}40,
-                0 0 50px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}20;
-  }
-  100% {
-    text-shadow: 0 0 10px ${({ theme }: { theme: DefaultTheme }) =>
-      theme.colors.text.primary}80,
-                0 0 20px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}60,
-                0 0 30px ${({ theme }: { theme: DefaultTheme }) =>
-                  theme.colors.text.primary}40;
-  }
-`;
-
-const Title = styled.h1`
-  font-family: ${({ theme }) => theme.typography.fontFamily.heading};
-  font-size: 5rem;
-  color: ${({ theme }) => theme.colors.text.primary};
-  text-align: center;
-  margin-bottom: ${({ theme }) => theme.metrics.spacing.xl};
-  letter-spacing: 4px;
-  animation: ${glowAnimation} 3s ease-in-out infinite;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 1;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(
-      circle at center,
-      ${({ theme }) => theme.colors.text.primary}10 0%,
-      transparent 70%
-    );
-    z-index: -1;
-    filter: blur(20px);
-  }
-
-  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.md}) {
-    font-size: 3.5rem;
-  }
-
-  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.sm}) {
-    font-size: 2.5rem;
-  }
-`;
-
-const ContentCard = styled.div`
-  background: ${({ theme }) => theme.colors.background.surface};
-  padding: ${({ theme }) => theme.metrics.spacing.xl};
-  border-radius: ${({ theme }) => theme.metrics.radius.lg};
-  max-width: 800px;
   width: 100%;
+`;
+
+const HeroCard = styled.article`
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.text.primary};
-    box-shadow: 0 0 15px ${({ theme }) => theme.colors.text.primary};
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: ${({ theme }) => theme.metrics.spacing.lg};
+
+  padding: ${({ theme }) => theme.metrics.spacing.xl};
+
+  background: ${({ theme }) => theme.colors.background.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  border-radius: ${({ theme }) => theme.metrics.radius.xl};
+  box-shadow: ${({ theme }) => theme.metrics.shadows.md};
+  backdrop-filter: blur(10px);
+
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.lg}) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.md}) {
+    padding: ${({ theme }) => theme.metrics.spacing.lg};
   }
 `;
 
-const Description = styled.p`
-  color: ${({ theme }) => theme.colors.text.primary};
+const HeroContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.lg};
+`;
+
+const IntroText = styled.p`
+  color: ${({ theme }) => theme.colors.text.secondary};
   font-size: ${({ theme }) => theme.typography.fontSize.lg};
   line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
-  margin-bottom: ${({ theme }) => theme.metrics.spacing.lg};
 
   @media (max-width: ${({ theme }) => theme.metrics.breakpoints.md}) {
     font-size: ${({ theme }) => theme.typography.fontSize.md};
   }
 `;
 
-const HighlightText = styled.span`
-  color: ${({ theme }) => theme.colors.text.secondary};
+const Highlight = styled.span`
+  color: ${({ theme }) => theme.colors.text.primary};
   font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+`;
+
+const SidePanel = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: ${({ theme }) => theme.metrics.spacing.md};
+  padding: ${({ theme }) => theme.metrics.spacing.lg};
+
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  border-radius: ${({ theme }) => theme.metrics.radius.lg};
+  background: ${({ theme }) => theme.colors.background.surfaceStrong};
+`;
+
+const SideLabel = styled.span`
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.text.muted};
+`;
+
+const SideTitle = styled.h2`
+  font-family: ${({ theme }) => theme.typography.fontFamily.decorative};
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
+  color: ${({ theme }) => theme.colors.accent.primary};
+`;
+
+const SideDescription = styled.p`
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+`;
+
+const HighlightsGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: ${({ theme }) => theme.metrics.spacing.lg};
+
+  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.lg}) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const HighlightCard = styled.article`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.sm};
+
+  padding: ${({ theme }) => theme.metrics.spacing.lg};
+
+  background: ${({ theme }) => theme.colors.background.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  border-radius: ${({ theme }) => theme.metrics.radius.lg};
+  box-shadow: ${({ theme }) => theme.metrics.shadows.md};
+
+  transition:
+    transform ${({ theme }) => theme.metrics.transitions.normal},
+    border-color ${({ theme }) => theme.metrics.transitions.normal},
+    box-shadow ${({ theme }) => theme.metrics.transitions.normal};
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: ${({ theme }) => theme.colors.border.strong};
+    box-shadow: ${({ theme }) => theme.metrics.shadows.glow};
+  }
+`;
+
+const HighlightTitle = styled.h3`
+  font-family: ${({ theme }) => theme.typography.fontFamily.heading};
+  font-size: ${({ theme }) => theme.typography.fontSize.lg};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  color: ${({ theme }) => theme.colors.text.primary};
+`;
+
+const HighlightDescription = styled.p`
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
 `;
 
 const About: React.FC = () => {
   return (
     <AboutContainer>
-      <Title>Rick and Morty</Title>
-      <ContentCard>
-        <Description>
-          Rick and Morty é uma série de animação para adultos criada por{" "}
-          <HighlightText>Justin Roiland</HighlightText> e{" "}
-          <HighlightText>Dan Harmon</HighlightText>.
-        </Description>
+      <PageHeader
+        eyebrow="Multiverse Overview"
+        title="Rick and Morty"
+        description="Uma experiência interdimensional para explorar personagens, curiosidades e o caos sci-fi de uma das animações mais icônicas da cultura pop."
+      />
 
-        <Description>
-          A série segue as aventuras interdimensionais do cientista genial e
-          alcoólatra <HighlightText>Rick Sanchez</HighlightText> e seu neto
-          ansioso <HighlightText>Morty Smith</HighlightText>.
-        </Description>
+      <HeroCard>
+        <HeroContent>
+          <IntroText>
+            <Highlight>Rick and Morty</Highlight> é uma série de animação para
+            adultos criada por <Highlight>Justin Roiland</Highlight> e{" "}
+            <Highlight>Dan Harmon</Highlight>, conhecida por combinar ficção
+            científica, humor ácido e aventuras absurdas em diferentes
+            realidades.
+          </IntroText>
 
-        <Description>
-          Com sua pistola de portais, eles viajam através de dimensões
-          alternativas, encontrando situações bizarras e vivendo aventuras
-          absurdas que misturam ciência, família e humor ácido.
-        </Description>
-      </ContentCard>
+          <IntroText>
+            A história acompanha o cientista genial e caótico{" "}
+            <Highlight>Rick Sanchez</Highlight> e seu neto ansioso{" "}
+            <Highlight>Morty Smith</Highlight>, viajando por dimensões
+            alternativas, enfrentando criaturas bizarras, dilemas existenciais e
+            situações tão engraçadas quanto perturbadoras.
+          </IntroText>
+
+          <IntroText>
+            Este projeto foi criado para apresentar esse universo de forma mais
+            visual, moderna e explorável, com foco em personagens, filtros
+            dinâmicos e curiosidades marcantes.
+          </IntroText>
+        </HeroContent>
+
+        <SidePanel>
+          <SideLabel>Project theme</SideLabel>
+          <SideTitle>Explore the multiverse</SideTitle>
+          <SideDescription>
+            Uma interface inspirada em Rick and Morty com estética dark sci-fi,
+            navegação moderna e foco em descoberta de personagens.
+          </SideDescription>
+        </SidePanel>
+      </HeroCard>
+
+      <HighlightsGrid>
+        <HighlightCard>
+          <HighlightTitle>Multiverse Travel</HighlightTitle>
+          <HighlightDescription>
+            Explore diferentes dimensões e mergulhe em um universo caótico cheio
+            de possibilidades absurdas.
+          </HighlightDescription>
+        </HighlightCard>
+
+        <HighlightCard>
+          <HighlightTitle>Iconic Characters</HighlightTitle>
+          <HighlightDescription>
+            Descubra personagens marcantes, suas espécies, status e últimas
+            localizações conhecidas.
+          </HighlightDescription>
+        </HighlightCard>
+
+        <HighlightCard>
+          <HighlightTitle>Sci-Fi Chaos</HighlightTitle>
+          <HighlightDescription>
+            Uma mistura de humor sombrio, ciência maluca, relações familiares e
+            aventuras interdimensionais.
+          </HighlightDescription>
+        </HighlightCard>
+      </HighlightsGrid>
     </AboutContainer>
   );
 };
