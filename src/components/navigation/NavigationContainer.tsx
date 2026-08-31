@@ -5,10 +5,6 @@ import { Navigation } from "./Navigation";
 export const NavigationContainer: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openMenu = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
   const closeMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
