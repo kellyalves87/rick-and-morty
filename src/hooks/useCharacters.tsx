@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 
 const API_BASE_URL = "https://rickandmortyapi.com/api/character";
 const STALE_TIME_MS = 5000;
@@ -35,10 +35,11 @@ interface CharacterFilters {
 
 const fetchCharacters = async (
   page: number,
-  filters: CharacterFilters
+  filters: CharacterFilters,
 ): Promise<CharactersData> => {
   try {
     const { name, status, species, gender } = filters;
+
     const { data } = await axios.get<CharactersData>(API_BASE_URL, {
       params: {
         page,
@@ -48,27 +49,36 @@ const fetchCharacters = async (
         ...(gender && { gender }),
       },
     });
+
     return data;
   } catch (error) {
-    if (error instanceof AxiosError) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.status === 404) {
+        return {
+          info: {
+            next: null,
+            prev: null,
+            pages: 0,
+            count: 0,
+          },
+          results: [],
+        };
+      }
+
       throw new Error(
-        error.response?.data?.error || "Failed to fetch characters"
+        error.response?.data?.error || "Failed to fetch characters",
       );
     }
+
     throw error;
   }
 };
 
 export const useCharacters = (page: number, filters: CharacterFilters) => {
-  const query = useQuery<CharactersData, Error>({
+  return useQuery<CharactersData, Error>({
     queryKey: ["characters", page, filters],
     queryFn: () => fetchCharacters(page, filters),
     staleTime: STALE_TIME_MS,
-    retry: (failureCount, error) => {
-      if (error.message.includes("404")) return false;
-      return failureCount < 3;
-    },
+    retry: 3,
   });
-
-  return query;
 };
