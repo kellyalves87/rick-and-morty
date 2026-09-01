@@ -25,13 +25,15 @@ const ContentArea = styled.main`
   position: relative;
   z-index: ${({ theme }) => theme.metrics.zIndex.base};
   width: 100%;
-  padding: ${({ theme }) => theme.metrics.spacing.xl}
+
+  padding: calc(52px + ${({ theme }) => theme.metrics.spacing.xl})
     ${({ theme }) => theme.metrics.spacing.lg}
     ${({ theme }) => theme.metrics.spacing.xxl};
 
   @media (min-width: ${({ theme }) => theme.metrics.breakpoints.lg}) {
-    padding-left: 120px;
-    padding-right: ${({ theme }) => theme.metrics.spacing.xl};
+    padding: ${({ theme }) => theme.metrics.spacing.xxl}
+      ${({ theme }) => theme.metrics.spacing.xl}
+      ${({ theme }) => theme.metrics.spacing.xxl};
   }
 `;
 
