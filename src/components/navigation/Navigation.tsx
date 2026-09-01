@@ -7,98 +7,128 @@ interface NavigationProps {
   onNavigate?: () => void;
 }
 
-const StyledLink = styled(Link)<{ $isActive?: boolean }>`
-  text-decoration: none;
-  color: ${({ theme, $isActive }) =>
-    $isActive ? theme.colors.text.primary : theme.colors.text.primary};
-  transition: color 0.3s ease;
-  position: relative;
-  padding: 0.5rem 0;
-
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: ${({ $isActive }) => ($isActive ? "100%" : "0")};
-    height: 2px;
-    background: ${({ theme }) => theme.colors.text.primary};
-    transition: width 0.3s ease;
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary};
-  }
-
-  &:hover,
-  &:focus {
-    color: ${({ theme }) => theme.colors.text.primary};
-    outline: none;
-
-    &::before {
-      width: 100%;
-    }
-  }
+const Overlay = styled.button.withConfig({
+  shouldForwardProp: (prop) => prop !== "$isOpen",
+})<{ $isOpen: boolean }>`
+  position: fixed;
+  inset: 0;
+  z-index: ${({ theme }) => theme.metrics.zIndex.dropdown};
+  border: none;
+  background: rgba(5, 8, 22, 0.62);
+  backdrop-filter: blur(6px);
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
+  transition:
+    opacity ${({ theme }) => theme.metrics.transitions.normal},
+    visibility ${({ theme }) => theme.metrics.transitions.normal};
 `;
 
 const StyledNav = styled.nav.withConfig({
-  shouldForwardProp: (prop) => prop !== "isOpen",
-})<{ isOpen: boolean }>`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background: ${({ theme }) => theme.colors.background.primary};
-  height: calc(100vh - 80px);
-  width: 100%;
-  max-width: 400px;
-  text-align: left;
-  padding: 2rem;
-  margin-top: 80px;
+  shouldForwardProp: (prop) => prop !== "$isOpen",
+})<{ $isOpen: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   z-index: ${({ theme }) => theme.metrics.zIndex.modal};
-  transform: ${({ isOpen }) =>
-    isOpen ? "translateX(0)" : "translateX(-100%)"};
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: ${({ theme, isOpen }) =>
-    isOpen ? `4px 0 15px ${theme.colors.text.primary}40` : "none"};
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: ${({ theme }) => theme.colors.text.primary};
-    box-shadow: 0 0 15px ${({ theme }) => theme.colors.text.primary};
-  }
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.xl};
+
+  width: min(360px, 88vw);
+  height: 100vh;
+  padding: 96px ${({ theme }) => theme.metrics.spacing.lg}
+    ${({ theme }) => theme.metrics.spacing.xl};
+
+  background: rgba(11, 16, 32, 0.9);
+  border-right: 1px solid ${({ theme }) => theme.colors.border.soft};
+  box-shadow: ${({ theme }) => theme.metrics.shadows.lg};
+  backdrop-filter: blur(14px);
+
+  transform: ${({ $isOpen }) =>
+    $isOpen ? "translateX(0)" : "translateX(-100%)"};
+  transition: transform ${({ theme }) => theme.metrics.transitions.normal};
+`;
+
+const Brand = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const BrandEyebrow = styled.span`
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.text.muted};
+`;
+
+const BrandTitle = styled.h2`
+  font-family: ${({ theme }) => theme.typography.fontFamily.decorative};
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  color: ${({ theme }) => theme.colors.accent.primary};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
 `;
 
 const MenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.sm};
   list-style: none;
   padding: 0;
   margin: 0;
 `;
 
 const MenuItem = styled.li`
-  margin: 2rem 0;
-  font-family: ${({ theme }) => theme.typography.fontFamily.heading};
-  font-size: ${({ theme }) => theme.typography.fontSize["xxl"]};
+  width: 100%;
 `;
 
-const Overlay = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "isOpen",
-})<{ isOpen: boolean }>`
-  position: fixed;
-  top: 0;
-  left: 0;
+const StyledLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => prop !== "$isActive",
+})<{ $isActive?: boolean }>`
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 100%;
-  background: rgba(13, 13, 13, 0.7);
-  backdrop-filter: blur(4px);
-  z-index: ${({ theme }) => theme.metrics.zIndex.dropdown};
-  opacity: ${({ isOpen }) => (isOpen ? 1 : 0)};
-  visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
-  transition: all 0.3s ease;
+  min-height: 52px;
+  padding: 0 ${({ theme }) => theme.metrics.spacing.md};
+
+  border: 1px solid
+    ${({ theme, $isActive }) =>
+      $isActive ? theme.colors.border.strong : "transparent"};
+  border-radius: ${({ theme }) => theme.metrics.radius.md};
+
+  background: ${({ theme, $isActive }) =>
+    $isActive ? theme.colors.accent.soft : "transparent"};
+
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-family: ${({ theme }) => theme.typography.fontFamily.heading};
+  font-size: ${({ theme }) => theme.typography.fontSize.md};
+  font-weight: ${({ theme, $isActive }) =>
+    $isActive
+      ? theme.typography.fontWeight.semibold
+      : theme.typography.fontWeight.medium};
+
+  transition:
+    background ${({ theme }) => theme.metrics.transitions.normal},
+    border-color ${({ theme }) => theme.metrics.transitions.normal},
+    transform ${({ theme }) => theme.metrics.transitions.normal},
+    color ${({ theme }) => theme.metrics.transitions.normal};
+
+  &:hover,
+  &:focus-visible {
+    background: ${({ theme }) => theme.colors.state.hover};
+    border-color: ${({ theme }) => theme.colors.border.soft};
+    transform: translateX(4px);
+    outline: none;
+  }
+`;
+
+const FooterText = styled.p`
+  margin-top: auto;
+  color: ${({ theme }) => theme.colors.text.muted};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  line-height: ${({ theme }) => theme.typography.lineHeight.normal};
 `;
 
 export const Navigation: React.FC<NavigationProps> = ({
@@ -109,7 +139,12 @@ export const Navigation: React.FC<NavigationProps> = ({
 
   return (
     <>
-      <StyledNav isOpen={isOpen} id="navigation-menu" aria-hidden={!isOpen}>
+      <StyledNav $isOpen={isOpen} id="navigation-menu" aria-hidden={!isOpen}>
+        <Brand>
+          <BrandEyebrow>Multiverse Explorer</BrandEyebrow>
+          <BrandTitle>Rick and Morty</BrandTitle>
+        </Brand>
+
         <MenuList>
           <MenuItem>
             <StyledLink
@@ -120,6 +155,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               Sobre
             </StyledLink>
           </MenuItem>
+
           <MenuItem>
             <StyledLink
               to="/personagens"
@@ -129,6 +165,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               Personagens
             </StyledLink>
           </MenuItem>
+
           <MenuItem>
             <StyledLink
               to="/curiosidades"
@@ -139,8 +176,18 @@ export const Navigation: React.FC<NavigationProps> = ({
             </StyledLink>
           </MenuItem>
         </MenuList>
+
+        <FooterText>
+          Explore personagens, dimensões e curiosidades do multiverso.
+        </FooterText>
       </StyledNav>
-      <Overlay isOpen={isOpen} onClick={onNavigate} />
+
+      <Overlay
+        type="button"
+        aria-label="Fechar menu"
+        $isOpen={isOpen}
+        onClick={onNavigate}
+      />
     </>
   );
 };

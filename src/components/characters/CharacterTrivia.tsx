@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PageHeader from "../common/PageHeader";
 
 interface TriviaItem {
   id: number;
@@ -73,128 +74,130 @@ const triviaData: TriviaItem[] = [
       "Sua frase característica é 'Olha só eu!'",
     ],
   },
+  {
+    id: 7,
+    name: "Birdperson",
+    facts: [
+      "É um dos poucos personagens que realmente compreende a complexidade emocional de Rick",
+      "Sua espécie possui uma cultura própria e uma forma de comunicação profundamente filosófica",
+      "Já lutou ao lado de Rick em diferentes momentos importantes do passado",
+      "Foi transformado em Phoenixperson antes de recuperar parte de sua antiga identidade",
+      "É responsável por uma das revelações mais tristes sobre o verdadeiro significado de 'Wubba Lubba dub dub'",
+    ],
+  },
+  {
+    id: 8,
+    name: "Squanchy",
+    facts: [
+      "Usa a palavra 'squanch' em vários contextos, mudando completamente o significado conforme a situação",
+      "Apesar do jeito relaxado e cômico, é um aliado fiel de Rick em momentos críticos",
+      "Consegue assumir uma forma muito mais agressiva e poderosa durante batalhas",
+      "Sua personalidade mistura humor, caos e lealdade de um jeito bem marcante",
+      "É um dos personagens secundários mais memoráveis do universo da série",
+    ],
+  },
 ];
 
-const TriviaContainer = styled.div`
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.sm}) {
-    padding-top: 0;
-  }
-`;
-
-const TriviaTitle = styled.h1`
-  color: ${({ theme }) => theme.colors.text.primary};
-  font-size: 3rem;
-  text-align: center;
-  margin: 1rem 0 2rem;
-
-  @media (max-width: ${({ theme }) => theme.metrics.breakpoints.sm}) {
-    font-size: 2rem;
-    margin: 0.5rem 0 1.5rem;
-  }
-  font-family: "get_schwifty", sans-serif;
-  text-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary}80;
-  letter-spacing: 2px;
+const TriviaContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.xl};
+  width: 100%;
 `;
 
 const TriviaGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: ${({ theme }) => theme.metrics.spacing.lg};
 `;
 
-const TriviaCard = styled.div`
-  background: ${({ theme }) => theme.colors.background.surface};
-  border-radius: 15px;
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: 2px solid ${({ theme }) => theme.colors.text.primary}30;
+const TriviaCard = styled.article`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.md};
 
-  &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      ${({ theme }) => theme.colors.text.primary}10 0%,
-      transparent 100%
-    );
-    pointer-events: none;
-  }
+  min-height: 100%;
+  padding: ${({ theme }) => theme.metrics.spacing.lg};
+
+  background: ${({ theme }) => theme.colors.background.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border.soft};
+  border-radius: ${({ theme }) => theme.metrics.radius.lg};
+  box-shadow: ${({ theme }) => theme.metrics.shadows.md};
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform ${({ theme }) => theme.metrics.transitions.normal},
+    border-color ${({ theme }) => theme.metrics.transitions.normal},
+    box-shadow ${({ theme }) => theme.metrics.transitions.normal};
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 20px ${({ theme }) => theme.colors.text.primary}30;
-    border-color: ${({ theme }) => theme.colors.text.primary}50;
+    transform: translateY(-4px);
+    border-color: ${({ theme }) => theme.colors.border.strong};
+    box-shadow: ${({ theme }) => theme.metrics.shadows.glow};
   }
 `;
 
 const CharacterName = styled.h2`
+  font-family: ${({ theme }) => theme.typography.fontFamily.heading};
+  font-size: ${({ theme }) => theme.typography.fontSize.xl};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.bold};
+  line-height: ${({ theme }) => theme.typography.lineHeight.tight};
   color: ${({ theme }) => theme.colors.text.primary};
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  font-family: "get_schwifty", sans-serif;
-  position: relative;
+`;
 
-  &:after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: ${({ theme }) => theme.colors.text.primary};
-    box-shadow: 0 0 10px ${({ theme }) => theme.colors.text.primary};
-  }
+const FactsLabel = styled.span`
+  font-size: ${({ theme }) => theme.typography.fontSize.xs};
+  font-weight: ${({ theme }) => theme.typography.fontWeight.semibold};
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.text.muted};
 `;
 
 const FactList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.metrics.spacing.md};
   list-style: none;
   padding: 0;
   margin: 0;
 `;
 
 const FactItem = styled.li`
-  color: ${({ theme }) => theme.colors.text.primary};
-  margin-bottom: 1rem;
-  padding-left: 1.5rem;
   position: relative;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  padding-left: 18px;
 
-  &:before {
+  color: ${({ theme }) => theme.colors.text.secondary};
+  font-size: ${({ theme }) => theme.typography.fontSize.sm};
+  line-height: ${({ theme }) => theme.typography.lineHeight.relaxed};
+
+  &::before {
     content: "";
     position: absolute;
+    top: 10px;
     left: 0;
-    top: 8px;
     width: 8px;
     height: 8px;
-    background: ${({ theme }) => theme.colors.text.primary};
-    border-radius: 50%;
-    box-shadow: 0 0 5px ${({ theme }) => theme.colors.text.primary};
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.text.secondary};
+    border-radius: 999px;
+    background: ${({ theme }) => theme.colors.accent.primary};
+    box-shadow: 0 0 12px ${({ theme }) => theme.colors.accent.primary}55;
   }
 `;
 
 const CharacterTrivia = () => {
   return (
     <TriviaContainer>
-      <TriviaTitle>Curiosidades dos Personagens</TriviaTitle>
+      <PageHeader
+        eyebrow="Character Insights"
+        title="Curiosidades"
+        description="Descubra fatos curiosos e detalhes marcantes sobre alguns dos personagens mais icônicos de Rick and Morty."
+      />
+
       <TriviaGrid>
         {triviaData.map((character) => (
           <TriviaCard key={character.id}>
+            <FactsLabel>Character file</FactsLabel>
             <CharacterName>{character.name}</CharacterName>
+
             <FactList>
               {character.facts.map((fact, index) => (
                 <FactItem key={index}>{fact}</FactItem>
